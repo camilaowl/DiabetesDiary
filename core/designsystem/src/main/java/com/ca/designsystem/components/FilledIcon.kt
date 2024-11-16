@@ -3,7 +3,7 @@ package com.ca.designsystem.components
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -15,14 +15,14 @@ import com.ca.designsystem.theme.Theme
 fun FilledIcon(backgroundColor: Color, @DrawableRes icon: Int) {
     Box(
         modifier = Modifier
-            .size(48.dp)
+            .size(36.dp)
             .background(backgroundColor, Theme.shapes.large)
             .aspectRatio(1f)
     ) {
         Icon(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(8.dp),
+                .padding(4.dp),
             painter = painterResource(id = icon),
             contentDescription = null,
             tint = Color.White

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -28,7 +29,7 @@ fun InsulinReminderTimelineCard(
             .clickable(
                 onClick = onClick,
                 indication = null,
-                interactionSource = MutableInteractionSource()
+                interactionSource = remember { MutableInteractionSource() }
             ),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -53,17 +54,18 @@ fun InsulinReminderTimelineCard(
                 )
 
                 Row(
-                    modifier = Modifier
-                        .height(56.dp)
-                        .padding(start = 4.dp),
+                    modifier = Modifier,
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    FilledIcon(backgroundColor = colorFromHex(reminder.insulin?.color!!), icon = R.drawable.notifications)
+                    FilledIcon(
+                        backgroundColor = colorFromHex(reminder.insulin?.color!!),
+                        icon = R.drawable.notifications
+                    )
 
                     Column(
                         modifier = Modifier
-                            .padding(4.dp)
+                            .padding(8.dp)
                             .weight(2f),
                         verticalArrangement = Arrangement.SpaceBetween
                     ) {
@@ -73,7 +75,7 @@ fun InsulinReminderTimelineCard(
                         )
 
                         Row(
-                            horizontalArrangement = Arrangement.spacedBy(4.dp),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
                             verticalAlignment = Alignment.Bottom
                         ) {
                             Text(
@@ -88,7 +90,9 @@ fun InsulinReminderTimelineCard(
                         }
                     }
 
-                    TextButton(onClick = { onDoneClick(reminder) }) {
+                    TextButton(
+                        onClick = { onDoneClick(reminder) }
+                    ) {
                         Text(text = stringResource(id = R.string.done))
                     }
                 }

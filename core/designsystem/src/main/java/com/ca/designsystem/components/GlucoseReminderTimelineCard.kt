@@ -53,19 +53,19 @@ fun GlucoseReminderTimelineCard(
                 )
 
                 Row(
-                    modifier = Modifier
-                        .height(56.dp),
+                    modifier = Modifier,
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Row(
                         modifier = Modifier
-                            .padding(4.dp)
                             .weight(2f),
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        FilledIcon(backgroundColor = Grey100, icon = R.drawable.blood_filled)
+                        FilledIcon(
+                            backgroundColor = Grey100,
+                            icon = R.drawable.blood_filled)
 
                         Text(
                             text = stringResource(id = R.string.glucose_measuring),

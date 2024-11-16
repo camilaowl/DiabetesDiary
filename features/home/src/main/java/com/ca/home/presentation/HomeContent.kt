@@ -95,7 +95,9 @@ fun Reminders(
     onDoneInsulin: (Int) -> Unit,
     onDoneGlucose: (Int) -> Unit,
 ) {
-    Column {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
         reminders.forEach { reminder ->
             when(reminder) {
                 is RecordInsulinReminder -> {
