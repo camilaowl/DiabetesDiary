@@ -43,7 +43,7 @@ fun HomeContent(
 ) {
     val context = LocalContext.current
     val focusRequester = FocusRequester()
-    val fabExpanded = remember { mutableStateOf(true) }
+    val fabExpanded = remember { mutableStateOf(false) }
 
     fun currentLocale() = context.resources.configuration.locales[0]
 

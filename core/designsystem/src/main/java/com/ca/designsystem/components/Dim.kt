@@ -1,6 +1,7 @@
 package com.ca.designsystem.components
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -19,6 +20,7 @@ fun Dim(
 ) {
     val color = animateColorAsState(
         targetValue = if (show.value) Color.Black.copy(alpha = 0.5f) else Color.Transparent,
+        animationSpec = spring(dampingRatio = 4f),
         label = ""
     )
 

@@ -150,15 +150,15 @@ private fun FabContent(
         visible = expanded.value,
         enter = fadeIn(
             animationSpec = tween(
-                durationMillis = if (expanded.value) 350 else 100,
-                delayMillis = if (expanded.value) 100 else 0,
+                durationMillis = 500,
+                delayMillis = 150,
                 easing = EaseIn
             )
         ),
         exit = fadeOut(
             animationSpec = tween(
-                durationMillis = if (expanded.value) 100 else 350,
-                delayMillis = if (expanded.value) 0 else 100,
+                durationMillis = 350,
+                delayMillis = 0,
                 easing = EaseOut
             )
         ),
@@ -207,7 +207,10 @@ private fun FabItem(
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = null,
-                onClick = onClick
+                onClick = {
+                    expanded.value = false
+                    onClick()
+                }
             )
             .then(modifier),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -227,10 +230,10 @@ private fun FabItem(
 
         Text(
             modifier = Modifier
-                .weight(1f, true)
+                .fillMaxWidth()
                 .offset(
                     x = animateDpAsState(
-                        if (expanded.value) 10.dp else 50.dp,
+                        if (expanded.value) 0.dp else 50.dp,
                         animationSpec = spring(dampingRatio = 3f)
                     ).value
                 )
@@ -239,7 +242,7 @@ private fun FabItem(
                         targetValue = if (expanded.value) 1f else 0f,
                         animationSpec = tween(
                             durationMillis = if (expanded.value) 350 else 100,
-                            delayMillis = if (expanded.value) 100 else 0,
+                            delayMillis = if (expanded.value) 200 else 0,
                             easing = EaseIn
                         )
                     ).value
