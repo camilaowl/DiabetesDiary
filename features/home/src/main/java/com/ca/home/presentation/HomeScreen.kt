@@ -36,11 +36,6 @@ import com.ca.model.RecordInsulinReminder
 
 @Composable
 fun HomeScreen(
-    openRecordsMenuBottomSheet: () -> Unit,
-    openInsulinRecordBottomSheet: (String) -> Unit,
-    openInsulinReminderBottomSheet: (Int) -> Unit,
-    openGlucoseRecordBottomSheet: (String) -> Unit,
-    openGlucoseReminderBottomSheet: (Int) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
 

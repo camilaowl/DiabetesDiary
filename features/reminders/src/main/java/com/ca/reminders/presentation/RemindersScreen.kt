@@ -1,6 +1,5 @@
 package com.ca.reminders.presentation
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -18,7 +17,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ca.designsystem.components.ReminderFloatingActionButton
 import com.ca.designsystem.components.Tabs
-import com.ca.model.Record
 import com.ca.model.RecordGlucoseReminder
 import com.ca.model.RecordInsulinReminder
 import com.ca.model.Reminder
@@ -33,9 +31,7 @@ import kotlinx.coroutines.launch
 fun RemindersScreen(
     viewModel: RemindersViewModel = hiltViewModel(),
     navigateToAddInsulinReminder: () -> Unit,
-    navigateToAddGlucoseReminder: () -> Unit,
-    openInsulinReminderMenuBottomSheet: (Int) -> Unit,
-    openGlucoseReminderMenuBottomSheet: (Int) -> Unit
+    navigateToAddGlucoseReminder: () -> Unit
 ) {
 
     val viewState by viewModel.viewState.collectAsStateWithLifecycle()
@@ -64,17 +60,11 @@ fun RemindersScreen(
             glucoseReminderEnabledChange = { reminder, enabled ->
                 viewModel.setGlucoseReminderEnabled(reminder, enabled)
             },
-            onItemClick = {
-                when(it) {
-                    is RecordInsulinReminder -> { openInsulinReminderMenuBottomSheet(it.id) }
-                    is RecordGlucoseReminder -> { openGlucoseReminderMenuBottomSheet(it.id) }
-                }
-            }
+            onItemClick = {}
         )
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun RemindersPager(
     modifier: Modifier,

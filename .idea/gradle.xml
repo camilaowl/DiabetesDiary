@@ -4,6 +4,7 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
@@ -26,10 +27,10 @@
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/authentication" />
             <option value="$PROJECT_DIR$/features/bottomsheet" />
-            <option value="$PROJECT_DIR$/features/bottomsheet/editglucoserecordbottomsheet" />
-            <option value="$PROJECT_DIR$/features/bottomsheet/editglucosereminderbottomsheet" />
-            <option value="$PROJECT_DIR$/features/bottomsheet/editinsulinrecordbottomsheet" />
-            <option value="$PROJECT_DIR$/features/bottomsheet/editinsulinreminderbottomsheet" />
+            <option value="$PROJECT_DIR$/features/bottomsheet/editglucoserecord" />
+            <option value="$PROJECT_DIR$/features/bottomsheet/editglucosereminder" />
+            <option value="$PROJECT_DIR$/features/bottomsheet/editinsulinrecord" />
+            <option value="$PROJECT_DIR$/features/bottomsheet/editinsulinreminder" />
             <option value="$PROJECT_DIR$/features/glucosereminder" />
             <option value="$PROJECT_DIR$/features/home" />
             <option value="$PROJECT_DIR$/features/insulinreminder" />

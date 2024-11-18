@@ -26,7 +26,6 @@ fun NavController.navigateBack() {
     popBackStack()
 }
 
-@OptIn(ExperimentalMaterialNavigationApi::class)
 @Composable
 fun MainNavHost(
     navHostController: NavHostController,
@@ -40,20 +39,7 @@ fun MainNavHost(
     ) {
         composable<MainGraph.Home> {
             BottomBarMenuNavHost(
-                mainNavController = navHostController,
-                openRecordsMenuBottomSheet = { navHostController.navigate("records_menu") },
-                openInsulinRecordBottomSheet = {
-                    navHostController.navigateToInsulinRecordBottomSheet(it)
-                },
-                openInsulinReminderBottomSheet = {
-                    navHostController.navigateToInsulinReminderBottomSheet(it)
-                },
-                openGlucoseRecordBottomSheet = {
-                    navHostController.navigateToGlucoseRecordBottomSheet(it)
-                },
-                openGlucoseReminderBottomSheet = {
-                    navHostController.navigateToGlucoseReminderBottomSheet(it)
-                }
+                mainNavController = navHostController
             )
         }
 

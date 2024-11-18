@@ -75,10 +75,10 @@ dependencies {
     implementation project(":features:reminders")
     implementation project(":features:insulinreminder")
     implementation project(":features:glucosereminder")
-    implementation project(":features:bottomsheet:editglucoserecordbottomsheet")
-    implementation project(":features:bottomsheet:editinsulinrecordbottomsheet")
-    implementation project(":features:bottomsheet:editglucosereminderbottomsheet")
-    implementation project(":features:bottomsheet:editinsulinreminderbottomsheet")
+    implementation project(':features:bottomsheet:editglucoserecord')
+    implementation project(':features:bottomsheet:editinsulinrecord')
+    implementation project(':features:bottomsheet:editglucosereminder')
+    implementation project(':features:bottomsheet:editinsulinreminder')
 
     // Android X
     implementation androidxDependencies.coreKtx

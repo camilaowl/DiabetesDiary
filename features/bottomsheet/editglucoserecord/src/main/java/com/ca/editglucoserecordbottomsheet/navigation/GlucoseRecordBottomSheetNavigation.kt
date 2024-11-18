@@ -29,7 +29,6 @@ fun NavGraphBuilder.editGlucoseRecordBottomSheet(
         EditGlucoseRecordBottomSheet(
             recordId = recordIdArgument,
             navigateToEditGlucoseRecord = { navigateToEditGlucoseRecord(recordIdArgument) },
-            dismiss = dismiss
         )
     }
 }
