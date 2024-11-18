@@ -70,6 +70,9 @@ class HomeViewModel @Inject constructor(
                 }
             }
 
+            is HomeEvent.AddGlucoseRecord -> {}
+            is HomeEvent.AddInsulinRecord -> {}
+
             else -> {}
         }
     }
