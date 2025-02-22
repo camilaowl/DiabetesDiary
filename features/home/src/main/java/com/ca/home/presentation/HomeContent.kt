@@ -35,11 +35,18 @@ import com.ca.model.Record
 import com.ca.model.RecordGlucoseReminder
 import com.ca.model.RecordInsulinReminder
 import com.ca.model.Reminder
+import java.time.LocalDate
 
 @Composable
 fun HomeContent(
     viewState: HomeViewState,
-    onEvent: (HomeEvent) -> Unit
+    addGlucoseRecord: () -> Unit,
+    addInsulinRecord: () -> Unit,
+    selectDate: (LocalDate) -> Unit,
+    editInsulinReminder: (Int) -> Unit,
+    editGlucoseReminder: (Int) -> Unit,
+    editInsulinRecord: (String) -> Unit,
+    editGlucoseRecord: (String) -> Unit
 ) {
     val context = LocalContext.current
     val focusRequester = FocusRequester()
@@ -47,15 +54,14 @@ fun HomeContent(
 
     fun currentLocale() = context.resources.configuration.locales[0]
 
-
     Scaffold(
         floatingActionButton = {
             NewRecordFab(
                 modifier = Modifier
                     .zIndex(2f),
                 expanded = fabExpanded,
-                addGlucoseMeasuring = { onEvent(HomeEvent.AddGlucoseRecord) },
-                addTakingInsulin = { onEvent(HomeEvent.AddInsulinRecord) }
+                addGlucoseMeasuring = { addGlucoseRecord() },
+                addTakingInsulin = { addInsulinRecord() }
             )
         },
         floatingActionButtonPosition = FabPosition.End,
@@ -80,7 +86,7 @@ fun HomeContent(
         ) {
             SingleRowCalendar(
                 selectedDay = viewState.selectedDate,
-                onSelectedDayChange = { onEvent(HomeEvent.SelectDate(it)) },
+                onSelectedDayChange = { selectDate(it) },
                 locale = currentLocale()
             )
             LazyColumn(
@@ -92,8 +98,8 @@ fun HomeContent(
                     Reminders(
                         modifier = Modifier,
                         reminders = viewState.reminders,
-                        editInsulinReminder = { onEvent(HomeEvent.EditInsulinReminder(it)) },
-                        editGlucoseReminder = { onEvent(HomeEvent.EditGlucoseReminder(it)) },
+                        editInsulinReminder = { editInsulinReminder(it) },
+                        editGlucoseReminder = { editGlucoseReminder(it) },
                         onDoneInsulin = {},
                         onDoneGlucose = {}
                     )
@@ -103,8 +109,8 @@ fun HomeContent(
                     Records(
                         modifier = Modifier,
                         records = viewState.recordsByDate,
-                        editInsulinRecord = { onEvent(HomeEvent.EditInsulinRecord(it)) },
-                        editGlucoseRecord = { onEvent(HomeEvent.EditGlucoseRecord(it)) }
+                        editInsulinRecord = { editInsulinRecord(it) },
+                        editGlucoseRecord = { editGlucoseRecord(it) }
                     )
                 }
 

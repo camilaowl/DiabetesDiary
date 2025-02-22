@@ -43,15 +43,14 @@ fun HomeScreen(
 
     val snackbarHostState = remember { SnackbarHostState() }
 
-
-//    Scaffold(
-//        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
-//        floatingActionButton = { NewRecordFab { openRecordsMenuBottomSheet() } },
-//        floatingActionButtonPosition = FabPosition.End,
-//    ) { paddingValues ->
-//
-//
-//    }
-
-    HomeContent(viewState = viewState, onEvent = viewModel::onEvent)
+    HomeContent(
+        viewState = viewState,
+        addGlucoseRecord = {},
+        addInsulinRecord = {},
+        selectDate = viewModel::selectDate,
+        editInsulinReminder = {},
+        editGlucoseReminder = {},
+        editInsulinRecord = {},
+        editGlucoseRecord = {},
+    )
 }

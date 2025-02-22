@@ -10,12 +10,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ca.designsystem.R
 import com.ca.designsystem.components.BottomSheetContainer
 import com.ca.designsystem.components.BottomSheetMenuOption
+import com.ca.designsystem.theme.DiaryTheme
 
 @Composable
 fun EditGlucoseReminderBottomSheet(
@@ -25,7 +27,7 @@ fun EditGlucoseReminderBottomSheet(
     viewModel: GlucoseReminderBottomSheetViewModel = hiltViewModel()
 ) {
     LaunchedEffect(true) {
-        viewModel.setReminder(reminderId)
+//        viewModel.setReminder(reminderId)
     }
 
     val reminder by viewModel.reminder.collectAsStateWithLifecycle()
@@ -63,5 +65,17 @@ fun EditGlucoseReminderBottomSheet(
                 }
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun Preview() {
+    DiaryTheme {
+        EditGlucoseReminderBottomSheet(
+           reminderId = 0 ,
+            navigateToGlucoseReminder = {},
+            dismiss = {}
+        )
     }
 }

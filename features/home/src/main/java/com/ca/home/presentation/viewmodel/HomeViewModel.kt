@@ -2,7 +2,6 @@ package com.ca.home.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ca.domain.repository.SettingsRepository
 import com.ca.domain.usecase.GetRecordsByDateUseCase
 import com.ca.domain.usecase.GetRemindersUseCase
 import com.ca.domain.usecase.MarkInsulinReminderAsDoneUseCase
@@ -11,7 +10,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -30,8 +28,8 @@ class HomeViewModel @Inject constructor(
     val viewState: StateFlow<HomeViewState>
         get() = _viewState
             .onStart {
-                onEvent(HomeEvent.FetchReminders(viewState.value.selectedDate))
-                onEvent(HomeEvent.FetchRecordsByDate(viewState.value.selectedDate))
+                fetchRemindersByDate(viewState.value.selectedDate)
+                fetchRecordsByDate(viewState.value.selectedDate)
             }
             .stateIn(
                 viewModelScope,
@@ -39,41 +37,33 @@ class HomeViewModel @Inject constructor(
                 HomeViewState()
             )
 
-    fun onEvent(event: HomeEvent) {
-        when(event) {
-            is HomeEvent.FetchReminders -> {
-                viewModelScope.launch {
-                    getRemindersUseCase().collect { reminders ->
-                        _viewState.update {
-                            it.copy(reminders = reminders)
-                        }
-                    }
+    private fun fetchRemindersByDate(date: LocalDate) {
+        viewModelScope.launch {
+            getRemindersUseCase().collect { reminders ->
+                _viewState.update {
+                    it.copy(reminders = reminders)
                 }
             }
+        }
+    }
 
-            is HomeEvent.FetchRecordsByDate -> {
-                viewModelScope.launch {
-                    getRecordsUseCase(event.date).collect { recordsByDate ->
-                        _viewState.update {
-                            it.copy(recordsByDate = recordsByDate)
-                        }
-                    }
+    private fun fetchRecordsByDate(date: LocalDate) {
+        viewModelScope.launch {
+            getRecordsUseCase(date).collect { recordsByDate ->
+                _viewState.update {
+                    it.copy(recordsByDate = recordsByDate)
                 }
             }
+        }
+    }
 
-            is HomeEvent.SelectDate -> {
-                viewModelScope.launch {
-                    _viewState.update {
-                        it.copy(selectedDate = event.date)
-                    }
-                    onEvent(HomeEvent.FetchRecordsByDate(event.date))
-                }
+    fun selectDate(date: LocalDate) {
+        viewModelScope.launch {
+            _viewState.update {
+                it.copy(selectedDate = date)
             }
-
-            is HomeEvent.AddGlucoseRecord -> {}
-            is HomeEvent.AddInsulinRecord -> {}
-
-            else -> {}
+            fetchRemindersByDate(date)
+            fetchRecordsByDate(date)
         }
     }
 
