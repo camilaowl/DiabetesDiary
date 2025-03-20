@@ -1,6 +1,5 @@
-package com.ca.diabetesdiary.navigation
+package com.ca.navigation.nav_graphs
 
-import com.ca.model.TopLevelDestination
 import kotlinx.serialization.Serializable
 
 @Serializable

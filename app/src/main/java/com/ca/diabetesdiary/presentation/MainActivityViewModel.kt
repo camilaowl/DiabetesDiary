@@ -2,11 +2,11 @@ package com.ca.diabetesdiary.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ca.authentication.navigation.AuthGraph
-import com.ca.diabetesdiary.navigation.MainGraph
 import com.ca.diabetesdiary.presentation.state.MainViewState
 import com.ca.domain.repository.MainRepository
-import com.ca.model.TopLevelDestination
+import com.ca.navigation.nav_graphs.AuthGraph
+import com.ca.navigation.nav_graphs.MainGraph
+import com.ca.navigation.nav_graphs.TopLevelDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

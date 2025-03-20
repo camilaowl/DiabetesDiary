@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.ca.diabetesdiary.navigation.MainNavHost
 import com.ca.diabetesdiary.presentation.state.DiaryAppState
-import com.ca.model.TopLevelDestination
+import com.ca.navigation.nav_graphs.TopLevelDestination
 
 @Composable
 fun DiaryApp(

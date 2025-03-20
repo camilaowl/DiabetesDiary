@@ -65,6 +65,7 @@ dependencies {
     implementation project(':core:alarmscheduler')
     compileOnly project(':core:notification')
     compileOnly project(':core:domain')
+    implementation project(':core:navigation')
     implementation project(":features:home")
     implementation project(":features:recordglucose")
     implementation project(":features:recordinsulin")

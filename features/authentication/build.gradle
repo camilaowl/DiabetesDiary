@@ -50,6 +50,7 @@ dependencies {
     implementation project(":core:schema")
     implementation project(":core:network")
     implementation project(":core:model")
+    implementation project(':core:navigation')
 
     // Android X
     implementation androidxDependencies.coreKtx
