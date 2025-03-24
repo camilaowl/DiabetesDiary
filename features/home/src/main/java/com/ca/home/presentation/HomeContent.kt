@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.ca.designsystem.components.Dim
@@ -27,6 +28,7 @@ import com.ca.designsystem.components.InsulinRecordTimelineCard
 import com.ca.designsystem.components.InsulinReminderTimelineCard
 import com.ca.designsystem.components.fab.NewRecordFab
 import com.ca.designsystem.components.singlerowcalendar.SingleRowCalendar
+import com.ca.designsystem.theme.DiaryTheme
 import com.ca.home.presentation.viewmodel.HomeEvent
 import com.ca.home.presentation.viewmodel.HomeViewState
 import com.ca.model.GlucoseRecord
@@ -185,5 +187,22 @@ fun Records(
                 }
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun HoneContentPreview() {
+    DiaryTheme {
+        HomeContent(
+            viewState = HomeViewState(),
+            addGlucoseRecord = {},
+            addInsulinRecord = {},
+            selectDate = {},
+            editInsulinReminder = {},
+            editGlucoseReminder = {},
+            editInsulinRecord = {},
+            editGlucoseRecord = {},
+        )
     }
 }

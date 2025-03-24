@@ -34,3 +34,6 @@ google-services.json
 
 # Gradle Properties
 gradle.properties
+
+# Kotlin Compiler
+/.kotlin/
