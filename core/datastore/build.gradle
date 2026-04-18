@@ -1,9 +1,11 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
-    id 'kotlin-kapt'
     id "com.google.protobuf"
+    id 'org.jetbrains.kotlin.kapt'
 }
 
 android {
@@ -12,7 +14,6 @@ android {
 
     defaultConfig {
         minSdk gradleDependencies.minSdk
-        targetSdk gradleDependencies.targetSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -28,8 +29,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_21
         targetCompatibility JavaVersion.VERSION_21
     }
-    kotlinOptions {
-        jvmTarget = '21'
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+        }
     }
 }
 
@@ -42,7 +45,7 @@ dependencies {
 
     // Hilt
     implementation hiltDependencies.hilt
-    kapt hiltDependencies.kapt
+    kapt hiltDependencies.compiler
 
     //Test
     implementation testDependencies.junit
@@ -51,23 +54,16 @@ dependencies {
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:3.24.3"
+        artifact = "com.google.protobuf:protoc:4.32.1"
     }
-
-    // Generates the java Protobuf-lite code for the Protobufs in this project. See
-    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
-    // for more information.
     generateProtoTasks {
-        all().each { task ->
+        all().forEach { task ->
             task.builtins {
-                java {
-                    option 'lite'
+                create("java") {
+                    option("lite")
                 }
+                create("kotlin")
             }
         }
     }
-}
-
-kapt {
-    correctErrorTypes = true
 }
