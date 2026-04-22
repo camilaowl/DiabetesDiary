@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -26,6 +27,7 @@ import com.ca.designsystem.components.*
 import com.ca.designsystem.components.pickers.DatePicker
 import com.ca.designsystem.components.pickers.TimePicker
 import com.ca.designsystem.components.topbar.TopBar
+import com.ca.designsystem.theme.DiaryTheme
 import com.ca.designsystem.theme.Theme
 import com.ca.model.Insulin
 import java.time.LocalDate
@@ -64,7 +66,6 @@ fun RecordInsulinRoute(
     )
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun RecordInsulinScreen(
     topBarTitle: String,
@@ -211,5 +212,29 @@ fun RecordInsulinScreen(
                 )
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun RecordInsulinScreenPreview() {
+    DiaryTheme {
+        RecordInsulinScreen(
+            topBarTitle = "Record Insulin",
+            onBackClick = {},
+            viewState = RecordInsulinViewState(),
+            showTimePicker = {},
+            showDatePicker = {},
+            setDate = {_->},
+            setNote = {},
+            setTime = {},
+            selectInsulin = {},
+            setUnits = {},
+            setInsulinDropDownMenuExpanded = {},
+            navigateToSettings = {},
+            decrementUnits = {},
+            incrementUnits = {},
+            submit = {}
+        )
     }
 }

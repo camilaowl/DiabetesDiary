@@ -5,8 +5,8 @@ import com.ca.authentication.token.JWTService
 import com.ca.authentication.token.JWTServiceImpl
 import com.ca.datastore.UserDataStore
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.auth
+import com.google.firebase.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

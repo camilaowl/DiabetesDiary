@@ -34,16 +34,9 @@ fun InsulinRemindersPage(
         ) {
             val reminder = reminders[it]
             InsulinReminderCard(
-                modifier = Modifier
-                    .animateItemPlacement(
-                        animationSpec = tween(
-                            durationMillis = 2000,
-                            delayMillis = 500,
-                            easing = LinearOutSlowInEasing
-                        )
-                    ),
+                modifier = Modifier,
                 reminder = reminders[it],
-                onCheckedChanged = { enabled ->
+                onCheckedChanged = { enabled: Boolean ->
                     onEnabledChange(reminder, enabled)
                 },
                 onClick = { onClick(reminder) }
