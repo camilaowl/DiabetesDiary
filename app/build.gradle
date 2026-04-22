@@ -1,12 +1,14 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
     id 'com.google.dagger.hilt.android'
-    id 'kotlin-kapt'
     id 'kotlinx-serialization'
-    id 'org.jetbrains.kotlin.plugin.compose' version '2.0.20'
+    id 'org.jetbrains.kotlin.kapt'
+    id 'org.jetbrains.kotlin.plugin.compose' version '2.3.20'
 }
 
 android {
@@ -38,14 +40,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_21
         targetCompatibility JavaVersion.VERSION_21
     }
-    kotlinOptions {
-        jvmTarget = '21'
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+        }
     }
     buildFeatures {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion composeCompilerVersion
+        kotlinCompilerExtensionVersion kotlinCompilerExtensionVersion
     }
     packagingOptions {
         resources {
@@ -65,6 +69,7 @@ dependencies {
     implementation project(':core:alarmscheduler')
     compileOnly project(':core:notification')
     compileOnly project(':core:domain')
+    implementation project(':core:navigation')
     implementation project(":features:home")
     implementation project(":features:recordglucose")
     implementation project(":features:recordinsulin")
@@ -75,10 +80,10 @@ dependencies {
     implementation project(":features:reminders")
     implementation project(":features:insulinreminder")
     implementation project(":features:glucosereminder")
-    implementation project(":features:bottomsheet:editglucoserecordbottomsheet")
-    implementation project(":features:bottomsheet:editinsulinrecordbottomsheet")
-    implementation project(":features:bottomsheet:editglucosereminderbottomsheet")
-    implementation project(":features:bottomsheet:editinsulinreminderbottomsheet")
+    implementation project(':features:bottomsheet:editglucoserecord')
+    implementation project(':features:bottomsheet:editinsulinrecord')
+    implementation project(':features:bottomsheet:editglucosereminder')
+    implementation project(':features:bottomsheet:editinsulinreminder')
 
     // Android X
     implementation androidxDependencies.coreKtx
@@ -107,9 +112,10 @@ dependencies {
     // Hilt
     implementation hiltDependencies.hilt
     implementation hiltDependencies.navigationCompose
-    kapt hiltDependencies.kapt
+    kapt hiltDependencies.compiler
 
     // Firebase
+    implementation firebaseDependencies.bom
     implementation firebaseDependencies.analytics
     implementation firebaseDependencies.crashlytics
     implementation firebaseDependencies.auth

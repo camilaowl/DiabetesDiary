@@ -9,21 +9,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ca.designsystem.components.topbar.MainTopBar
-import com.ca.diabetesdiary.navigation.MainGraph
 import com.ca.glucosereminder.navigation.navigateToGlucoseReminder
 import com.ca.home.presentation.HomeScreen
 import com.ca.insulinreminder.navigation.navigateToInsulinReminder
 import com.ca.records.presentation.RecordsScreen
 import com.ca.reminders.presentation.RemindersScreen
+import com.ca.navigation.nav_graphs.MainGraph
 
 @Composable
 fun BottomBarMenuNavHost(
-    mainNavController: NavHostController,
-    openRecordsMenuBottomSheet: () -> Unit,
-    openInsulinRecordBottomSheet: (String) -> Unit,
-    openInsulinReminderBottomSheet: (Int) -> Unit,
-    openGlucoseRecordBottomSheet: (String) -> Unit,
-    openGlucoseReminderBottomSheet: (Int) -> Unit
+    mainNavController: NavHostController
 ) {
     val bottomMenuNavHostController = rememberNavController()
 
@@ -41,13 +36,7 @@ fun BottomBarMenuNavHost(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable<BottomBarRoute.Home> {
-                HomeScreen(
-                    openRecordsMenuBottomSheet = openRecordsMenuBottomSheet,
-                    openInsulinRecordBottomSheet = { openInsulinRecordBottomSheet(it) },
-                    openInsulinReminderBottomSheet = { openInsulinReminderBottomSheet(it) },
-                    openGlucoseRecordBottomSheet = { openGlucoseRecordBottomSheet(it) },
-                    openGlucoseReminderBottomSheet = { openGlucoseReminderBottomSheet(it) }
-                )
+                HomeScreen()
             }
             composable<BottomBarRoute.Records> {
                 RecordsScreen()
@@ -56,8 +45,6 @@ fun BottomBarMenuNavHost(
                 RemindersScreen(
                     navigateToAddInsulinReminder = { mainNavController.navigateToInsulinReminder() },
                     navigateToAddGlucoseReminder = { mainNavController.navigateToGlucoseReminder() },
-                    openInsulinReminderMenuBottomSheet = { openInsulinReminderBottomSheet(it) },
-                    openGlucoseReminderMenuBottomSheet = { openGlucoseReminderBottomSheet(it) }
                 )
             }
         }

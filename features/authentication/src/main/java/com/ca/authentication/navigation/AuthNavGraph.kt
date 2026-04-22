@@ -4,14 +4,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.ca.authentication.presentation.AuthScreen
-import com.ca.model.TopLevelDestination
-import kotlinx.serialization.Serializable
+import com.ca.navigation.nav_graphs.AuthGraph
 
-@Serializable
-data object AuthGraph : TopLevelDestination {
-    @Serializable
-    data object Login
-}
 
 fun NavGraphBuilder.authNavGraph(
     onComplete: () -> Unit

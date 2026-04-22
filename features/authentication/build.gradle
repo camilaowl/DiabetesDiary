@@ -1,9 +1,11 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
     id 'kotlinx-serialization'
-    id 'org.jetbrains.kotlin.plugin.compose' version '2.0.20'
+    id 'org.jetbrains.kotlin.kapt'
+    id 'org.jetbrains.kotlin.plugin.compose' version '2.3.20'
 }
 
 android {
@@ -12,7 +14,6 @@ android {
 
     defaultConfig {
         minSdk gradleDependencies.minSdk
-        targetSdk gradleDependencies.targetSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -32,14 +33,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_21
         targetCompatibility JavaVersion.VERSION_21
     }
-    kotlinOptions {
-        jvmTarget = '21'
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+        }
     }
     buildFeatures {
         compose true
+        buildConfig true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion composeCompilerVersion
+        kotlinCompilerExtensionVersion kotlinCompilerExtensionVersion
     }
 }
 
@@ -50,6 +54,7 @@ dependencies {
     implementation project(":core:schema")
     implementation project(":core:network")
     implementation project(":core:model")
+    implementation project(':core:navigation')
 
     // Android X
     implementation androidxDependencies.coreKtx
@@ -72,6 +77,7 @@ dependencies {
     implementation composeDependencies.constraintLayout
 
     // Firebase
+    implementation firebaseDependencies.bom
     implementation firebaseDependencies.analytics
     implementation firebaseDependencies.crashlytics
     implementation firebaseDependencies.auth
@@ -82,7 +88,7 @@ dependencies {
     // Hilt
     implementation hiltDependencies.hilt
     implementation hiltDependencies.navigationCompose
-    kapt hiltDependencies.kapt
+    kapt hiltDependencies.compiler
 
     // DataStore
     implementation androidxDependencies.dataStore

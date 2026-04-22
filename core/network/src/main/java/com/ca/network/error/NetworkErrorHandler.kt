@@ -10,11 +10,14 @@ class NetworkErrorHandler {
     suspend fun <T: Operation.Data>withErrorHandler(request: suspend () -> ApolloResponse<T>): Result<T> {
         try {
             val response = request.invoke()
-            if (response.errors != null) {
-                val error = parse(response.errors!!.first())
+            response.errors?.let {
+                val error = parse(it.first())
                 return Result.failure(error)
             }
-            return Result.success(response.data!!)
+            response.data?.let {
+                return Result.success(it)
+            }
+            return Result.failure(Throwable(response.exception?.message ?: "Unknown Error"))
         } catch (exception: ApolloHttpException) {
             return Result.failure(NetworkError.ServerError)
         }

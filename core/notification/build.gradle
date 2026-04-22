@@ -1,8 +1,10 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
     id 'com.google.dagger.hilt.android'
-    id 'kotlin-kapt'
 }
 
 android {
@@ -11,7 +13,6 @@ android {
 
     defaultConfig {
         minSdk gradleDependencies.minSdk
-        targetSdk gradleDependencies.targetSdk
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -27,8 +28,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_21
         targetCompatibility JavaVersion.VERSION_21
     }
-    kotlinOptions {
-        jvmTarget = '21'
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+        }
     }
 }
 
@@ -42,7 +45,7 @@ dependencies {
     // Hilt
     implementation hiltDependencies.hilt
     implementation hiltDependencies.navigationCompose
-    kapt hiltDependencies.kapt
+    kapt hiltDependencies.compiler
 
     //Test
     implementation testDependencies.junit

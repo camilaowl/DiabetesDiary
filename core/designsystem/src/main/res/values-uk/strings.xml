@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="done">Зроблено</string>
-    <string name="international_unit">МО</string>
-    <string name="reminder_taking_insulin">Нагадування: Прийняти інсулін</string>
-    <string name="reminder_glucose_measuring">Нагадування: Виміряти рівень глюкози</string>
+    <string name="international_unit">%d МО</string>
+    <string name="reminder_taking_insulin">Прийняти інсулін</string>
+    <string name="reminder_glucose_measuring">Виміряти рівень глюкози</string>
     <string name="glucose_measuring">Вимір глюкози</string>
     <string name="glucose">Глюкоза</string>
     <string name="insulin">Інсулін</string>
